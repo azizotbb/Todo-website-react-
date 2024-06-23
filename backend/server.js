@@ -18,6 +18,13 @@ app.post("/data", async (req, res) => {
       console.log("there is an error !!!!!!!", err);
     });
 });
+
+app.delete("/data/:id", async (req, res) => {
+  const todoId = req.params.id;
+  await todo.deleteOne({ _id: todoId }).then(() => {
+    res.send("delete successfully");
+  });
+});
 app.listen(3000, (req, res) => {
   console.log("server is working .....");
 });
