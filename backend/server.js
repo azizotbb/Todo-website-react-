@@ -25,6 +25,15 @@ app.delete("/data/:id", async (req, res) => {
     res.send("delete successfully");
   });
 });
+
+app.put("/data/:id", async (req, res) => {
+  const todoId = req.params.id;
+  const filter = { _id: todoId };
+  const update = { isCompleted: true };
+  await todo.findOneAndUpdate(filter, update).then(() => {
+    res.send("update successfully");
+  });
+});
 app.listen(3000, (req, res) => {
   console.log("server is working .....");
 });
