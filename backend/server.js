@@ -4,10 +4,31 @@ const todo = require("./module/todo");
 const app = express();
 app.use(express.json());
 
+// -----------to filter complete and incomplete data-------------
+app.get("/filter", async (req, res) => {
+  const isCompleted = req.query.isCompleted;
+  const todos = await todo
+    .find({
+      isCompleted: isCompleted,
+    })
+    .exec();
+  res.send(todos);
+});
+//-------------delete all incompleted data-------------------------
+
+app.delete("/deleteMany", async (req, res) => {
+  await todo.deleteMany({ isCompleted: false }).then(() => {
+    res.send("delete successfully");
+  });
+});
+
+//-------------CRUD = create read update delete-------------------------
+
 app.get("/data", async (req, res) => {
   const todos = await todo.find();
   res.send(todos);
 });
+
 app.post("/data", async (req, res) => {
   await todo
     .create(req.body)
