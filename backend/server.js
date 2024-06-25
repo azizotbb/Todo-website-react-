@@ -55,6 +55,6 @@ app.put("/data/:id", async (req, res) => {
     res.send("update successfully");
   });
 });
-app.listen(3000, (req, res) => {
+app.listen(5000, (req, res) => {
   console.log("server is working .....");
 });
