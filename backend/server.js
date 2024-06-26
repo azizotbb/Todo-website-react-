@@ -1,8 +1,10 @@
 const express = require("express");
 const mongoose = require("./db");
+const cors = require("cors");
 const todo = require("./module/todo");
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // -----------to filter complete and incomplete data-------------
 app.get("/filter", async (req, res) => {
