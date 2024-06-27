@@ -49,10 +49,11 @@ app.delete("/data/:id", async (req, res) => {
   });
 });
 
-app.put("/data/:id", async (req, res) => {
+app.put("/data/:id/:isCompleted", async (req, res) => {
   const todoId = req.params.id;
+  const isCompleted = req.params.isCompleted;
   const filter = { _id: todoId };
-  const update = { isCompleted: true };
+  const update = { isCompleted: isCompleted };
   await todo.findOneAndUpdate(filter, update).then(() => {
     res.send("update successfully");
   });

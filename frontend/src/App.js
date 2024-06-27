@@ -48,8 +48,21 @@ export default function App() {
       });
   };
 
+  const putTodo = (id, newState) => {
+    axios
+      .put(`http://localhost:5000/data/${id}/${newState}`)
+      .then((response) => {
+        console.log("id:  ", id);
+        console.log("THW NEW DATA : ", newState);
+        getData();
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  };
+
   const mapOverTasks = tasks.map((taskObj, i) => (
-    <Todo key={i} task={taskObj} deleteTodo={deleteTodo} />
+    <Todo key={i} task={taskObj} deleteTodo={deleteTodo} putTodo={putTodo} />
   ));
   return (
     <div className="App">

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 export default function Todo(props) {
   const { _id, title, isCompleted } = props.task;
+
   return (
     <div className="todoDiv">
-      <input className="checkbox" type="checkbox" checked={isCompleted} />
+      <input
+        className="checkbox"
+        type="checkbox"
+        checked={isCompleted}
+        onClick={() => {
+          props.putTodo(_id, !isCompleted);
+        }}
+      />
       <span
         style={{
           textDecoration: isCompleted ? "line-through" : "none",
