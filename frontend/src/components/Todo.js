@@ -1,33 +1,24 @@
 import React from "react";
-import axios from "axios";
 import { FaTrash } from "react-icons/fa";
 
 export default function Todo(props) {
-  const del = () => {
-    axios
-      .delete(`http://localhost:5000/data/${props.id}`)
-      .then((response) => {
-        console.log(`Deleted post with ID ${props.id}`);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
+  const { _id, title, isCompleted } = props.task;
   return (
     <div className="todoDiv">
-      <h2
-        style={{ textDecoration: props.isCompleted ? "line-through" : "none" }}
+      <input className="checkbox" type="checkbox" checked={isCompleted} />
+      <span
+        style={{
+          textDecoration: isCompleted ? "line-through" : "none",
+        }}
       >
-        {props.title}
-      </h2>
-      <input
-        type="checkbox"
-        className="checkbox"
-        checked={props.isCompleted}
-      ></input>
-
-      <button className="del" onClick={del}>
+        {title}
+      </span>
+      <button
+        className="del"
+        onClick={() => {
+          props.deleteTodo(_id);
+        }}
+      >
         <FaTrash />
       </button>
     </div>

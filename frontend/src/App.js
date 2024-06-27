@@ -1,39 +1,60 @@
-import "./App.css";
 import React, { useState, useEffect } from "react";
+import "./App.css";
+
 import axios from "axios";
 import Todo from "./components/Todo";
 import Add from "./components/Add";
 
-function App() {
-  const [task, setTask] = useState([]);
-  useEffect(() => {}, []);
+export default function App() {
+  const [tasks, setTasks] = useState([]);
 
-  axios
-    .get("http://localhost:5000/data")
-    .then((res) => {
-      setTask(res.data);
-    })
-    .catch((err) => {
-      console.log("error", err);
-    });
+  useEffect(() => {
+    getData();
+  }, []);
 
-  const taskMap = task.map((elm, i) => {
-    return (
-      <Todo
-        key={i}
-        title={elm.title}
-        isCompleted={elm.isCompleted}
-        id={elm._id}
-      />
-    );
-  });
+  const getData = () => {
+    axios
+      .get(`http://localhost:5000/data`)
+      .then((response) => {
+        console.log("DATA: ", response.data);
+        setTasks(response.data);
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  };
 
+  const postNewTodo = (body) => {
+    axios
+      .post(`http://localhost:5000/data`, body)
+      .then((response) => {
+        console.log("DATA: ", response.data);
+        getData();
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  };
+
+  const deleteTodo = (id) => {
+    axios
+      .delete(`http://localhost:5000/data/${id}`)
+      .then((response) => {
+        console.log("DATA: ", response.data);
+        getData();
+      })
+      .catch((err) => {
+        console.log("ERR: ", err);
+      });
+  };
+
+  const mapOverTasks = tasks.map((taskObj, i) => (
+    <Todo key={i} task={taskObj} deleteTodo={deleteTodo} />
+  ));
   return (
     <div className="App">
-      <Add />
-      {taskMap}
+      <Add createFunc={postNewTodo} />
+      {mapOverTasks}
     </div>
   );
 }
-
-export default App;

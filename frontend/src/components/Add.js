@@ -1,37 +1,23 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-export default function Add() {
-  const [newTask, setNewTask] = useState("");
+export default function Add(props) {
+  const [newTitle, setNewTitle] = useState("");
 
-  const change = (event) => {
-    setNewTask(event.target.value);
-  };
-
-  const send = async () => {
-    await axios
-      .post("http://localhost:5000/data", {
-        title: newTask,
-        isCompleted: false,
-      })
-      .then(() => {
-        console.log("created successfully");
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
+  const createNewTodo = () => {
+    console.log("createNewTodo from ADD");
+    props.createFunc({ title: newTitle, isCompleted: false });
   };
 
   return (
-    <div>
+    <div className="Add">
       <input
         type="text"
-        onChange={change}
         placeholder="Write new title here ..."
-      ></input>
-      <br />
-      <button onClick={send}>Create New Todo</button>
-      <br />
+        onChange={(e) => {
+          setNewTitle(e.target.value);
+        }}
+      />
+      <button onClick={createNewTodo}>Create New Todo</button>
     </div>
   );
 }
