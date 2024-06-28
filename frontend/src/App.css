@@ -33,3 +33,7 @@ input {
   font-size: 18px;
   cursor: pointer;
 }
+
+button {
+  margin: 5px;
+}

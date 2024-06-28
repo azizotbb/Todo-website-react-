@@ -7,11 +7,11 @@ app.use(express.json());
 app.use(cors());
 
 // -----------to filter complete and incomplete data-------------
+
 app.get("/filter", async (req, res) => {
-  const isCompleted = req.query.isCompleted;
   const todos = await todo
     .find({
-      isCompleted: isCompleted,
+      isCompleted: req.query.isCompleted,
     })
     .exec();
   res.send(todos);
@@ -19,7 +19,7 @@ app.get("/filter", async (req, res) => {
 //-------------delete all incompleted data-------------------------
 
 app.delete("/deleteMany", async (req, res) => {
-  await todo.deleteMany({ isCompleted: false }).then(() => {
+  await todo.deleteMany({}).then(() => {
     res.send("delete successfully");
   });
 });

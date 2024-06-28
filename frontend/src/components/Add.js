@@ -17,6 +17,7 @@ export default function Add(props) {
           setNewTitle(e.target.value);
         }}
       />
+      <br></br>
       <button onClick={createNewTodo}>Create New Todo</button>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaTrash } from "react-icons/fa";
 
 export default function Todo(props) {
@@ -9,7 +9,7 @@ export default function Todo(props) {
       <input
         className="checkbox"
         type="checkbox"
-        checked={isCompleted}
+        defaultChecked={isCompleted}
         onClick={() => {
           props.putTodo(_id, !isCompleted);
         }}
