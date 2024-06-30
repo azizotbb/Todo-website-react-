@@ -16,6 +16,11 @@ export default function Add(props) {
         onChange={(e) => {
           setNewTitle(e.target.value);
         }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            createNewTodo();
+          }
+        }}
       />
       <br></br>
       <button onClick={createNewTodo}>Create New Todo</button>

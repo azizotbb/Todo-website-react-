@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("./db");
 const cors = require("cors");
 const todo = require("./module/todo");
+const user = require("./module/user");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -19,7 +20,7 @@ app.get("/filter", async (req, res) => {
 //-------------delete all incompleted data-------------------------
 
 app.delete("/deleteMany", async (req, res) => {
-  await todo.deleteMany({}).then(() => {
+  await todo.deleteMany({ isCompleted: true }).then(() => {
     res.send("delete successfully");
   });
 });
@@ -58,6 +59,41 @@ app.put("/data/:id/:isCompleted", async (req, res) => {
     res.send("update successfully");
   });
 });
+
+//-------------------- user request ---------------------------
+app.post("/register", async (req, res) => {
+  await user
+    .create(req.body)
+    .then((data) => {
+      res.json({ message: "Create New User Successfully" });
+    })
+    .catch((err) => {
+      console.log("error :", err);
+      res.json({ message: "This email already taken" });
+    });
+});
+app.post("/login", async (req, res) => {
+  await user
+    .find({ email: req.body.email })
+    .then((data) => {
+      if (data.length === 1) {
+        if (req.body.password === data[0].password) {
+          res.status(200).json({
+            message: "Login successfully ",
+            userName: data[0].userName,
+          });
+        } else {
+          res.status(400).json({ message: "Wrong password" });
+        }
+      } else {
+        res.status(404).json({ message: "Email not found" });
+      }
+    })
+    .catch((err) => {
+      console.log("error ", err);
+    });
+});
+
 app.listen(5000, (req, res) => {
   console.log("server is working .....");
 });

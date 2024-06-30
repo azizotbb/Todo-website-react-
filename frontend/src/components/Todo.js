@@ -11,7 +11,7 @@ export default function Todo(props) {
         type="checkbox"
         defaultChecked={isCompleted}
         onClick={() => {
-          props.putTodo(_id, !isCompleted);
+          props.toggleTodo(_id, !isCompleted);
         }}
       />
       <span
