@@ -64,7 +64,7 @@ app.put("/data/:id/:isCompleted", async (req, res) => {
 app.post("/register", async (req, res) => {
   await user
     .create(req.body)
-    .then((data) => {
+    .then(() => {
       res.json({ message: "Create New User Successfully" });
     })
     .catch((err) => {

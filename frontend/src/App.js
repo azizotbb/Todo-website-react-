@@ -4,6 +4,7 @@ import "./App.css";
 import axios from "axios";
 import Todo from "./components/Todo";
 import Add from "./components/Add";
+import Register from "./components/Register";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -110,6 +111,7 @@ export default function App() {
       >
         GET PENDING
       </button>
+      <Register></Register>
       {mapOverTasks}
     </div>
   );

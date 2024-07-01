@@ -37,3 +37,6 @@ input {
 button {
   margin: 5px;
 }
+label {
+  display: block;
+}
