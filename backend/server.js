@@ -83,10 +83,10 @@ app.post("/login", async (req, res) => {
             userName: data[0].userName,
           });
         } else {
-          res.status(400).json({ message: "Wrong password" });
+          res.json({ message: "Wrong password" });
         }
       } else {
-        res.status(404).json({ message: "Email not found" });
+        res.json({ message: "Email not found" });
       }
     })
     .catch((err) => {

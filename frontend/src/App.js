@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-
 import axios from "axios";
+
 import Todo from "./components/Todo";
 import Add from "./components/Add";
 import Register from "./components/Register";
+import Login from "./components/Login";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
+  const [page, setPage] = useState("");
 
   useEffect(() => {
     getData();
@@ -17,7 +19,6 @@ export default function App() {
     axios
       .get(`http://localhost:5000/data`)
       .then((response) => {
-        console.log("DATA: ", response.data);
         setTasks(response.data);
       })
       .catch((err) => {
@@ -29,7 +30,6 @@ export default function App() {
     axios
       .post(`http://localhost:5000/data`, body)
       .then((response) => {
-        console.log("DATA: ", response.data);
         getData();
       })
       .catch((err) => {
@@ -41,7 +41,6 @@ export default function App() {
     axios
       .delete(`http://localhost:5000/data/${id}`)
       .then((response) => {
-        console.log("DATA: ", response.data);
         getData();
       })
       .catch((err) => {
@@ -53,7 +52,6 @@ export default function App() {
     axios
       .put(`http://localhost:5000/data/${id}/${newStatus}`)
       .then((response) => {
-        console.log("DATA: ", response.data);
         getData();
       })
       .catch((err) => {
@@ -65,7 +63,6 @@ export default function App() {
     axios
       .delete(`http://localhost:5000/deleteMany`)
       .then((response) => {
-        console.log("DATA: ", response.data);
         getData();
       })
       .catch((err) => {
@@ -77,7 +74,6 @@ export default function App() {
     axios
       .get(`http://localhost:5000/filter?isCompleted=${status}`)
       .then((response) => {
-        console.log("DATA: ", response.data);
         setTasks(response.data);
       })
       .catch((err) => {
@@ -92,8 +88,31 @@ export default function App() {
       toggleTodo={toggleTodo}
     />
   ));
+
+  const pageRegister = () => {
+    if (page === "" || page === "login") {
+      setPage("register");
+    } else {
+      setPage("");
+    }
+  };
+
+  const pageLogin = () => {
+    if (page === "" || page === "register") {
+      setPage("login");
+    } else {
+      setPage("");
+    }
+  };
+
   return (
     <div className="App">
+      <button className="register" onClick={pageRegister}>
+        Register
+      </button>
+      <button className="login" onClick={pageLogin}>
+        Login
+      </button>
       <Add createFunc={postNewTodo} />
       <button onClick={getData}>GET TASKS</button>
       <button onClick={deleteTasks}>DELETE Completed tasks </button>
@@ -111,7 +130,9 @@ export default function App() {
       >
         GET PENDING
       </button>
-      <Register></Register>
+      {page === "register" && <Register />}
+      {page === "login" && <Login />}
+
       {mapOverTasks}
     </div>
   );

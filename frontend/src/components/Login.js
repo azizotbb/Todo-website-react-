@@ -1,26 +1,29 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
-export default function Register() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [message, setmessage] = useState("");
 
-  const body = { email, password, username };
+  const body = {
+    email,
+    password,
+  };
 
-  const register = (e) => {
+  const login = (e) => {
     e.preventDefault();
+
     axios
-      .post("http://localhost:5000/register", body)
-      .then((response) => {
-        console.log(response.data);
-        setmessage(response.data.message);
+      .post("http://localhost:5000/login", body)
+      .then((e) => {
+        setmessage(e.data.message);
       })
       .catch((err) => {
-        console.log("err", err);
+        console.log("Err", err);
       });
   };
+
   return (
     <div>
       <form>
@@ -32,9 +35,7 @@ export default function Register() {
             setEmail(e.target.value);
           }}
         />
-
         <label htmlFor="password">Password</label>
-
         <input
           type="password"
           placeholder="Write your password here"
@@ -42,17 +43,9 @@ export default function Register() {
             setPassword(e.target.value);
           }}
         />
-        <label htmlFor="username">Username</label>
-
-        <input
-          type="text"
-          placeholder="Write your username here"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
+        <br />
         <p>{message}</p>
-        <input type="submit" value={"register"} onClick={register} />
+        <input type="submit" value={"Login"} onClick={login} />
       </form>
     </div>
   );

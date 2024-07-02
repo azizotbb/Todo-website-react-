@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position: relative;
 }
 .todoDiv {
   border: 2px solid black;
@@ -39,4 +40,13 @@ button {
 }
 label {
   display: block;
+}
+.register {
+  position: absolute;
+  left: 1px;
+}
+
+.login {
+  position: absolute;
+  left: 70px;
 }
