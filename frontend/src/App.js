@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import { Routes, Route, Link } from "react-router-dom";
 
 import Todo from "./components/Todo";
 import Add from "./components/Add";
@@ -9,7 +10,6 @@ import Login from "./components/Login";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-  const [page, setPage] = useState("");
 
   useEffect(() => {
     getData();
@@ -89,51 +89,63 @@ export default function App() {
     />
   ));
 
-  const pageRegister = () => {
-    if (page === "" || page === "login") {
-      setPage("register");
-    } else {
-      setPage("");
-    }
-  };
-
-  const pageLogin = () => {
-    if (page === "" || page === "register") {
-      setPage("login");
-    } else {
-      setPage("");
-    }
-  };
-
   return (
     <div className="App">
-      <button className="register" onClick={pageRegister}>
-        Register
-      </button>
-      <button className="login" onClick={pageLogin}>
-        Login
-      </button>
-      <Add createFunc={postNewTodo} />
-      <button onClick={getData}>GET TASKS</button>
-      <button onClick={deleteTasks}>DELETE Completed tasks </button>
-      <button
-        onClick={() => {
-          filterData(true);
-        }}
-      >
-        GET DONE
-      </button>
-      <button
-        onClick={() => {
-          filterData(false);
-        }}
-      >
-        GET PENDING
-      </button>
-      {page === "register" && <Register />}
-      {page === "login" && <Login />}
+      <nav>
+        <ul>
+          <li>
+            <Link className="link" to={"/"}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="login" to={"/login"}>
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link className="login" to={"/register"}>
+              Register
+            </Link>{" "}
+          </li>
+          <li>
+            <Link className="link" to={"/todo"}>
+              Todo
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" />
+        <Route
+          path="/todo"
+          element={
+            <div className="home">
+              <Add createFunc={postNewTodo} />
+              <button onClick={getData}>GET TASKS</button>
+              <button onClick={deleteTasks}>DELETE Completed tasks </button>
+              <button
+                onClick={() => {
+                  filterData(true);
+                }}
+              >
+                GET DONE
+              </button>
+              <button
+                onClick={() => {
+                  filterData(false);
+                }}
+              >
+                GET PENDING
+              </button>
 
-      {mapOverTasks}
+              {mapOverTasks}
+            </div>
+          }
+        ></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
