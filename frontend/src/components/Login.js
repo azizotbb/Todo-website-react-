@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setmessage] = useState("");
@@ -18,6 +19,8 @@ export default function Login() {
       .post("http://localhost:5000/login", body)
       .then((e) => {
         setmessage(e.data.message);
+        props.setIsLogedIn(true);
+        props.settUsername(e.data.userName);
       })
       .catch((err) => {
         console.log("Err", err);
@@ -45,6 +48,8 @@ export default function Login() {
         />
         <br />
         <p>{message}</p>
+        <Link to={"/register"}> Dont have an account</Link>
+        <br />
         <input type="submit" value={"Login"} onClick={login} />
       </form>
     </div>

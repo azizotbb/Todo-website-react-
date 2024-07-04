@@ -10,6 +10,8 @@ import Login from "./components/Login";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
+  const [isLogedIn, setIsLogedIn] = useState(false);
+  const [username, settUsername] = useState("");
 
   useEffect(() => {
     getData();
@@ -99,14 +101,22 @@ export default function App() {
             </Link>
           </li>
           <li>
-            <Link className="login" to={"/login"}>
-              Login
-            </Link>
+            {isLogedIn ? (
+              <p className="welcome">Welcome {username}</p>
+            ) : (
+              <Link className="login" to={"/login"}>
+                Login
+              </Link>
+            )}
           </li>
           <li>
-            <Link className="login" to={"/register"}>
-              Register
-            </Link>{" "}
+            {isLogedIn ? (
+              <></>
+            ) : (
+              <Link className="register" to={"/register"}>
+                Register
+              </Link>
+            )}
           </li>
           <li>
             <Link className="link" to={"/todo"}>
@@ -143,7 +153,12 @@ export default function App() {
             </div>
           }
         ></Route>
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <Login setIsLogedIn={setIsLogedIn} settUsername={settUsername} />
+          }
+        />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>

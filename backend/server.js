@@ -80,11 +80,13 @@ app.post("/login", async (req, res) => {
         if (req.body.password === data[0].password) {
           res.status(200).json({
             message: "Login successfully ",
-            userName: data[0].userName,
+            userName: data[0].username,
           });
+          console.log(data[0].username);
         } else {
           res.json({ message: "Wrong password" });
         }
+        s;
       } else {
         res.json({ message: "Email not found" });
       }

@@ -1,3 +1,6 @@
+body {
+  background-color: #c3e5f0;
+}
 .App {
   text-align: center;
   position: relative;
@@ -47,27 +50,41 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #551fbd;
 }
 
 li .link {
   float: left;
 }
 
-li .login {
+li .login,
+.register,
+.welcome {
   float: right;
 }
 
 li .link,
-.login {
+.login,
+.register {
   display: inline-block;
-  color: white;
+  color: #ffffff;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px 16px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 li .link:hover,
-.login:hover {
-  background-color: #111;
+.login:hover,
+.register:hover {
+  color: #c3e5f0;
+}
+.welcome {
+  display: inline-block;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: default;
 }
