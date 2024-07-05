@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -26,40 +28,48 @@ export default function Register() {
   };
   return (
     <div>
-      <form>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          placeholder="Write your email here"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
+      <Form className="form-container">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-        <label htmlFor="password">Password</label>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Label>Username</Form.Label>
 
-        <input
-          type="password"
-          placeholder="Write your password here"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <label htmlFor="username">Username</label>
-
-        <input
+        <Form.Control
           type="text"
-          placeholder="Write your username here"
+          placeholder="UserName"
           onChange={(e) => {
             setUsername(e.target.value);
           }}
         />
-        <br />
-        <Link to={"/login"}>Have an account</Link>
 
         <p>{message}</p>
-        <input type="submit" value={"register"} onClick={register} />
-      </form>
+        <Button variant="info" type="submit" onClick={register}>
+          Submit
+        </Button>
+        <br />
+        <Link to={"/login"}> have an account ?</Link>
+      </Form>
     </div>
   );
 }

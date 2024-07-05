@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export default function Add(props) {
   const [newTitle, setNewTitle] = useState("");
@@ -9,21 +12,26 @@ export default function Add(props) {
   };
 
   return (
-    <div className="Add">
-      <input
-        type="text"
-        placeholder="Write new title here ..."
-        onChange={(e) => {
-          setNewTitle(e.target.value);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            createNewTodo();
-          }
-        }}
-      />
-      <br></br>
-      <button onClick={createNewTodo}>Create New Todo</button>
+    <div className="add-container">
+      <InputGroup size="lg">
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="Write new title here ..."
+          onChange={(e) => {
+            setNewTitle(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              createNewTodo();
+            }
+          }}
+        />
+      </InputGroup>
+      <br />
+      <Button variant="secondary" onClick={createNewTodo}>
+        Create New Todo
+      </Button>{" "}
     </div>
   );
 }

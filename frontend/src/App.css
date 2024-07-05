@@ -1,18 +1,46 @@
 body {
-  background-color: #c3e5f0;
+  background-color: #d3d9d4;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 1;
 }
-.App {
-  text-align: center;
-  position: relative;
-}
-.todoDiv {
-  border: 2px solid black;
+
+.todo-container {
+  border: 1px solid black;
+  border-radius: 20px;
   width: 50%;
+  height: 60px;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   padding: 15px;
+  text-align: center;
+  background-color: #124e66;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.add-container {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 40%;
+}
+
+.btns-todo {
+  margin-left: auto;
+  margin-right: auto;
+  margin: 30px;
+  position: relative;
+  text-align: center;
 }
 
 .del {
@@ -20,20 +48,16 @@ body {
   top: 8px;
   left: 16px;
   font-size: 18px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   border: none;
   cursor: pointer;
-}
-
-input {
-  padding: 10px;
-  margin: 5px;
+  color: crimson;
 }
 
 .checkbox {
   position: absolute;
-  top: 8px;
-  left: 50px;
+  top: 22px;
+  left: 60px;
   font-size: 18px;
   cursor: pointer;
 }
@@ -41,16 +65,18 @@ input {
 button {
   margin: 5px;
 }
-label {
-  display: block;
-}
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #551fbd;
+  background-color: #748d92;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 li .link {
@@ -59,7 +85,7 @@ li .link {
 
 li .login,
 .register,
-.welcome {
+.logedIn {
   float: right;
 }
 
@@ -77,9 +103,9 @@ li .link,
 li .link:hover,
 .login:hover,
 .register:hover {
-  color: #c3e5f0;
+  color: #fbe9d0;
 }
-.welcome {
+.logedIn {
   display: inline-block;
   color: #ffffff;
   text-align: center;
@@ -87,4 +113,44 @@ li .link:hover,
   text-decoration: none;
   font-weight: bold;
   cursor: default;
+}
+.form-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.247);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.first-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 0px;
+}
+
+.welcome h1 {
+  text-align: center;
+  padding-top: 10%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 900;
+  font-size: 500%;
+  color: #124e66;
+}
+
+.welcome-content h4 {
+  text-align: center;
+  padding-top: 30%;
+  padding-right: 40px;
+}
+.home-container h2 {
+  color: #124e66;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 250%;
+  margin-top: 100px;
+  text-align: center;
 }

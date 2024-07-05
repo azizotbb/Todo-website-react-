@@ -5,7 +5,7 @@ export default function Todo(props) {
   const { _id, title, isCompleted } = props.task;
 
   return (
-    <div className="todoDiv">
+    <div className="todo-container">
       <input
         className="checkbox"
         type="checkbox"

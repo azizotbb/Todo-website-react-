@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { Routes, Route, Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 import Todo from "./components/Todo";
 import Add from "./components/Add";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Home from "./components/Home";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-  const [isLogedIn, setIsLogedIn] = useState(false);
+  const [isLogedIn, setIsLogedIn] = useState();
   const [username, settUsername] = useState("");
 
   useEffect(() => {
@@ -96,13 +98,25 @@ export default function App() {
       <nav>
         <ul>
           <li>
-            <Link className="link" to={"/"}>
+            <Link className="link" to={"/home"}>
               Home
             </Link>
           </li>
           <li>
             {isLogedIn ? (
-              <p className="welcome">Welcome {username}</p>
+              <p className="logedIn">
+                {" "}
+                <Button
+                  style={{ marginRight: "20px" }}
+                  variant="danger"
+                  onClick={() => {
+                    setIsLogedIn(false);
+                  }}
+                >
+                  Logout
+                </Button>
+                Welcome {username}
+              </p>
             ) : (
               <Link className="login" to={"/login"}>
                 Login
@@ -132,22 +146,31 @@ export default function App() {
           element={
             <div className="home">
               <Add createFunc={postNewTodo} />
-              <button onClick={getData}>GET TASKS</button>
-              <button onClick={deleteTasks}>DELETE Completed tasks </button>
-              <button
-                onClick={() => {
-                  filterData(true);
-                }}
-              >
-                GET DONE
-              </button>
-              <button
-                onClick={() => {
-                  filterData(false);
-                }}
-              >
-                GET PENDING
-              </button>
+
+              <div className="btns-todo">
+                <Button variant="success" onClick={getData}>
+                  GET TASKS
+                </Button>
+                <Button variant="danger" onClick={deleteTasks}>
+                  DELETE COMPLETED TASKS
+                </Button>
+                <Button
+                  variant="info"
+                  onClick={() => {
+                    filterData(true);
+                  }}
+                >
+                  GET DONE
+                </Button>
+                <Button
+                  variant="info"
+                  onClick={() => {
+                    filterData(false);
+                  }}
+                >
+                  GET PENDING
+                </Button>
+              </div>
 
               {mapOverTasks}
             </div>
@@ -160,6 +183,7 @@ export default function App() {
           }
         />
         <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<Home></Home>} />
       </Routes>
     </div>
   );
