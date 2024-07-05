@@ -18,9 +18,9 @@ body {
   position: relative;
   padding: 15px;
   text-align: center;
-  background-color: #124e66;
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+  background-color: #ebebeb;
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.074) 0px -23px 25px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
@@ -138,19 +138,18 @@ li .link:hover,
   padding-top: 10%;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 900;
-  font-size: 500%;
   color: #124e66;
+  margin-top: 120px;
 }
 
 .welcome-content h4 {
   text-align: center;
   padding-top: 30%;
-  padding-right: 40px;
 }
 .home-container h2 {
   color: #124e66;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 250%;
-  margin-top: 100px;
+  margin-top: 60px;
   text-align: center;
 }

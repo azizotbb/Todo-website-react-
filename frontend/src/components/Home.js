@@ -2,10 +2,13 @@ import React from "react";
 
 export default function Home() {
   return (
-    <div className="home-container">
+    <div>
       <div className="first-container">
         <div className="welcome">
-          <h1>Welcome to Todo website</h1>
+          <h1>
+            Welcome <br />
+            to Todo website
+          </h1>
         </div>
         <div className="welcome-content">
           <h4>

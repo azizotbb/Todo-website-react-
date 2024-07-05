@@ -64,7 +64,7 @@ export default function Register() {
         />
 
         <p>{message}</p>
-        <Button variant="info" type="submit" onClick={register}>
+        <Button variant="primary" type="submit" onClick={register}>
           Submit
         </Button>
         <br />
